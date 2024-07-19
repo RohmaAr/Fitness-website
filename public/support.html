@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness FAQs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        i{
+            margin-right: 5px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .faq {
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            margin-bottom: 5px;
+            background-color: rgb(30,157,255);
+            padding: 20px;
+        }
+
+        .answer {
+            display: none;
+            color: #000000;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .answer p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact p {
+            margin: 0;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .contact-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+      
+        footer {
+            background-color: #f2f2f2;
+            padding: 20px;
+            padding-left: 0px;
+            padding-right: 0px;
+            text-align: center;
+            margin-top: 30px;
+            width: 100%; 
+        }
+        .footer-content {
+            margin-top: 20px;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            font-size: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #0056b3;
+        }
+        .contact-form {
+            margin-top: 0px;
+            text-align: center;
+            padding: 30px;
+            border: solid rgb(30,157,255);
+        }
+
+        .contact-form textarea {
+            width: 100%;
+            height: 150px;
+            resize: none;
+            margin-bottom: 10px;
+        }
+        .contact-form p{
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            border: solid rgb(30,157,255);
+            background-color: #000000;
+            color: rgb(30,157,255);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .contact-form button:hover {
+            background-color: rgb(30,157,255);
+            color: rgb(255, 255, 255);
+            border: solid rgb(255, 255, 255);
+        }
+        .nav-bar {
+    background-color: black; 
+    color:whitesmoke; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 20px; 
+    border-bottom: solid rgb(255, 255, 255);
+}
+.nav-bar a{
+    color: white;
+    text-decoration: none;
+}
+.nav-logo h1 {
+    margin: 0; 
+    font-size: 24px; 
+}
+
+.nav-list ul {
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+}
+
+.nav-list ul li {
+    margin-right: 20px; 
+    cursor: pointer; 
+}
+
+.nav-buttons {
+    display: flex; 
+    align-items: center; 
+}
+
+.login-btn{
+    background-color: rgb(0, 0, 0); 
+    color:rgb(255, 255, 255); 
+    padding: 8px 16px; 
+    border: solid white; 
+    border-radius: 10px; 
+    margin-right: 10px; 
+    cursor: pointer; 
+}
+.register-btn {
+    background-color: rgb(0, 0, 0); 
+    color:rgb(255, 255, 255); 
+    padding: 8px 10px; 
+    border: solid white; 
+    border-radius: 10px; 
+    margin-right: 10px; 
+    cursor: pointer; 
+}
+.login-btn a,
+.register-btn a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.login-btn:hover,
+.register-btn:hover {
+    background-color: white;
+    color: black; 
+}
+.login-btn a:hover,
+.register-btn a:hover{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-logo">
+            <h1>FITNESS</h1>
+        </div>
+        <div class="nav-list">
+            <ul>
+                <li><a href="/HomePage.html">Home</a></li>
+                <li><a href="/workoutplan.html">Workout Plans</a></li>
+                <li><a href="/dietPlan.html">Diet Plans</a></li>
+                <li><a href="/community.html">Community</a></li>
+                <li><a href="/profiledisplay.html">Profile</a></li>
+            </ul>
+        </div>
+        <div class="nav-buttons">
+            <div class="login-btn"><a href="login.html">Login</a></div>
+            <div class="register-btn"><a href="signup.html">Register</a></div>
+        </div>
+            </div>
+        <h1>Fitness FAQs</h1>
+        <div class="container">
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What are the benefits of cardiovascular exercise?</div>
+            <div class="answer">
+                <p>Cardiovascular exercise, such as running, swimming, or cycling, helps improve heart health, increases lung capacity, boosts mood, burns calories, and reduces the risk of chronic diseases like heart disease and diabetes.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How often should I do cardiovascular exercise?</div>
+            <div class="answer">
+                <p>Aim for at least 150 minutes of moderate-intensity or 75 minutes of vigorous-intensity cardiovascular exercise per week, spread out over several days. Beginners may start with shorter sessions and gradually increase duration and intensity.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What are some effective cardio workouts for beginners?</div>
+            <div class="answer">
+                <p>Walking, jogging, cycling, swimming, dancing, and aerobic classes are excellent options for beginners. Start with low-impact activities and gradually increase intensity as your fitness improves.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How can I improve my cardiovascular endurance?</div>
+            <div class="answer">
+                <p>Consistency is key. Gradually increase the duration and intensity of your workouts over time. Incorporate a variety of cardiovascular activities and intervals to challenge your heart and lungs.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What are the benefits of strength training?</div>
+            <div class="answer">
+                <p>Strength training helps build muscle mass, increases metabolism, improves bone density, enhances joint stability, and promotes functional strength for everyday activities.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How often should I do strength training workouts?</div>
+            <div class="answer">
+                <p>Aim for at least two days of full-body strength training per week, with a day of rest between sessions to allow muscles to recover and grow.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What are some beginner-friendly strength training exercises?</div>
+            <div class="answer">
+                <p>Bodyweight exercises like squats, lunges, push-ups, and planks are excellent for beginners. You can also incorporate dumbbell or resistance band exercises for added resistance.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How can I progress in my strength training routine?</div>
+            <div class="answer">
+                <p>Gradually increase the weight, reps, or sets of your exercises as you get stronger. Focus on proper form and technique to prevent injury and maximize results.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> Is it necessary to lift heavy weights to build muscle?</div>
+            <div class="answer">
+                <p>Lifting heavy weights is one way to build muscle, but you can also achieve muscle growth with lighter weights and higher repetitions, especially for beginners.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What role do carbohydrates, proteins, and fats play in a balanced diet for fitness?</div>
+            <div class="answer">
+                <p>Carbohydrates provide energy for workouts, proteins support muscle repair and growth, and fats are essential for hormone production and nutrient absorption. A balanced diet includes all three macronutrients in appropriate proportions.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How does nutrition affect exercise performance?</div>
+            <div class="answer">
+                <p>Proper nutrition provides the energy and nutrients needed for optimal exercise performance, recovery, and muscle growth. Eating a balanced diet supports overall health and fitness goals.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What are some healthy snacks for energy before a workout?</div>
+            <div class="answer">
+                <p>Opt for snacks that are rich in carbohydrates and protein, such as a banana with peanut butter, Greek yogurt with fruit, or whole grain toast with avocado.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How can I calculate my daily calorie needs?</div>
+            <div class="answer">
+                <p>Use an online calculator or consult with a nutritionist to estimate your basal metabolic rate (BMR) and activity level, then adjust your calorie intake based on your goals.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What should I eat before and after a workout?</div>
+            <div class="answer">
+                <p>Before a workout, consume a balanced meal or snack containing carbohydrates and protein to fuel your workout. Afterward, focus on replenishing glycogen stores and promoting muscle recovery with a combination of protein and carbohydrates.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> Is yoga a good way to improve flexibility and mobility?</div>
+            <div class="answer">
+                <p>Yes, yoga combines stretching, strength, and balance exercises, making it an excellent way to improve flexibility, mobility, and overall body awareness.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How can I improve my mobility?</div>
+            <div class="answer">
+                <p>Incorporate dynamic stretching, foam rolling, and mobility exercises into your routine to improve joint mobility and movement patterns. Focus on areas of tightness or restriction.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> What are some good stretches for beginners?</div>
+            <div class="answer">
+                <p>Beginner-friendly stretches include hamstring stretches, quadriceps stretches, calf stretches, chest stretches, and shoulder stretches. Yoga and Pilates classes can also be beneficial for improving flexibility.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> How often should I stretch to improve flexibility?</div>
+            <div class="answer">
+                <p>Aim to stretch major muscle groups at least two to three times per week, holding each stretch for 15-30 seconds without bouncing.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question"><i class="fa-solid fa-angle-down"></i> Why is flexibility important for overall fitness?</div>
+            <div class="answer">
+                <p>Flexibility improves joint range of motion, reduces the risk of injury, enhances athletic performance, and promotes better posture and movement mechanics.</p>
+            </div>
+        </div>
+
+        <!-- Repeat the above structure for other FAQs -->
+        <div class="contact">
+               
+                <div class="contact-form">
+                    <p>If you have any other queries, feel free to email us with your message:</p>
+                    <textarea id="message" placeholder="Type your message here..."></textarea>
+                    <button onclick="openGmail()">Send Mail</button>
+                </div>
+        </div>
+        </div>
+        <footer>
+            <div class="social-icons">
+                <p>©2024 Fitness.pk All Rights Reserved</p>
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                
+            </div>
+        </footer>
+        
+
+    <script>
+        // Add JavaScript to toggle the visibility of answers when questions are clicked
+        document.querySelectorAll('.question').forEach(question => {
+            question.addEventListener('click', () => {
+                question.nextElementSibling.classList.toggle('show');
+            });
+        });
+        function openGmail() {
+            var message = document.getElementById("message").value;
+            var subject = encodeURIComponent("Fitness FAQs Inquiry");
+            var body = encodeURIComponent(message);
+            var url = "https://mail.google.com/mail/?view=cm&fs=1&to=aliahsan007838383@gmail.com&su=" + subject + "&body=" + body;
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+</html>

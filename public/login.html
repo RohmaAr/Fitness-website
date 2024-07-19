@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+      
+        .g-signin2 {
+            width: 30%;
+            margin-top: 30px;
+            margin-left: 175px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+
+        body {
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            position: relative;
+            display: flex;
+            z-index: 1;
+            margin-top: 100px;
+        }
+
+        .login-form {
+            width: 500px;
+            padding-bottom: 40px;
+            border-radius: 20px;
+            box-shadow: rgba(30, 157, 255, 0.4) 5px 0px, rgba(30, 157, 255, 0.3) 10px 0px, rgba(30, 157, 255, 0.2) 15px 0px, rgba(30, 157, 255, 0.1) 20px 0px, rgba(30, 157, 255, 0.05) 25px 0px;
+            background-color: rgb(0, 0, 0);
+            height: 350px;
+            margin-top: 20px;
+            padding-left: 40px;
+            position: relative;
+            z-index: -1;
+            color: white;
+            border-top: solid rgba(30, 157, 255);;
+            border-bottom: solid rgba(30, 157, 255);
+            transition: transform 2s ease-in-out;
+            transform: translateX(-110%); /* Initial position */
+        }
+        .visible {
+            transform: translateX(0%); /* Slide out to the visible position */
+        }
+        h1 {
+            margin-left: 190px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 30px);
+            padding: 10px;
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff;
+            border-right: 1px solid #ffffff;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+
+        }
+
+        .input2 i {
+            margin-left: 440px;
+            transform: translateY(-220%);
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            width: 30%;
+            margin-top: 10px;
+            margin-left: 160px;
+            padding: 10px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
+            border: solid rgba(30, 157, 255);
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgba(30, 157, 255);
+            color: white;
+        }
+
+        .p {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            margin-left: 5px;
+            margin-right: 35px;
+        }
+
+        .p a {
+            color: white;
+        }
+
+        .signin-btn {
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
+            border: solid rgba(30, 157, 255);
+            width: 30%;
+            margin-top: 10px;
+            margin-left: 160px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        i {
+            color: black;
+        }
+
+        .signin-btn i {
+            color: white;
+        }
+
+        .divider {
+            width: 60%;
+            height: 1px;
+            background-color: rgba(30, 157, 255);
+            margin-top: 20px;
+            margin-left: 80px;
+        }
+        video {
+            position: relative;
+            left: 30px;
+            width: 620px;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 20px;
+            border-top: solid rgb(30,157,255);
+            border-bottom: solid rgba(30,157,255);
+            box-shadow: rgba(30,157,255, 0.4) -5px 0px, rgba(30,157,255, 0.3) -10px 0px, rgba(30,157,255, 0.2) -15px 0px, rgba(30,157,255, 0.1) -20px 0px, rgba(30,157,255, 0.05) -25px 0px;
+        }
+        @media screen and (min-width: 375px) and (max-width: 1024px){
+            body{
+                display: grid;
+            }
+            .login-form{
+                transform: none;
+                border: solid rgb(30,157,255);
+            }
+            video{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <video autoplay muted loop>
+        <source src="login.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="login-form hidden">
+        <h1>Login</h1>
+        <form id="login-form">
+            <div class="input1">
+                <input class="username" type="text" id="username" placeholder="  Enter Username">
+            </div>
+            <div class="input2">
+                <input class="password" type="password" id="password" placeholder="  Enter Password">
+                <i class="fas fa-eye" onclick="togglePasswordVisibility(this)"></i>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <div class="divider"></div>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <div class="p">
+            <a href="signup.html">Create account</a>
+        </div>
+    </div>
+</div>
+<script>
+      document.addEventListener("DOMContentLoaded", function () {
+    const video = document.querySelector("video");
+    const container = document.querySelector(".login-form");
+    
+    // Initially hide the login form
+    container.classList.add("hidden");
+    
+    video.addEventListener("loadedmetadata", function () {
+        // Show the login form once the video metadata is loaded
+        container.classList.remove("hidden");
+        container.classList.add("visible");
+    });
+});
+
+    function togglePasswordVisibility(icon) {
+        var passwordInput = icon.previousElementSibling;
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+
+    document.getElementById("login-form").addEventListener("submit", async function(event) {
+        event.preventDefault(); 
+
+        
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        
+        const data = await response.json();
+
+        
+        if (data.success) {
+            
+            window.location.href = "Homepage.html";
+        } else {
+            
+            alert(data.errorMessage || "Login failed");
+        }
+    });
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+    }
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</body>
+</html>

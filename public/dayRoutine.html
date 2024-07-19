@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Routine</title>
+    <link rel="stylesheet" href="workoutCompleted.css">
+    <style>
+        body{
+            background-color: rgb(0, 0, 0);
+            position: relative;
+        }
+        *{
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: white;
+        }
+        .mainBody{
+            width: 80%;
+            margin: auto;
+        } 
+        #info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin-bottom: 2rem;
+        }  
+        #info div{
+            width: 33%;
+            text-align: center;
+            font-weight:bold ;
+            color: rgb(0, 0, 0);
+        }
+        #startButton{
+            font-size:small;
+            font-weight: bold;
+            color: rgb(30,157,255);
+            background-color: black;
+            border-radius: 1rem;
+            border: solid rgb(30,157,255) ;
+            padding: 1%;
+            width: 25%;
+            margin: 1rem;
+        }
+        #buttonDiv{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            position: relative;
+        }
+        #next{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 1rem;
+        }
+        #followAlong{
+            padding: .5rem;
+            position: fixed;
+            top: 12%;
+            left:33%;
+            width: 40%;
+            height: 80%;
+            border-radius: 1rem;
+            background-color: rgb(239, 235, 235);
+            display: flex;
+            flex-direction: column;
+            color: black;
+            text-align: center;
+            display: none;
+        }
+        .exercise{
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            margin-bottom: 2rem;
+            box-shadow: 2px 2px 2px 2px rgb(30,157,255);
+            padding: 1rem;
+        }
+        #info h3{
+            font-size: xx-large;
+        }
+        #workoutActive{
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+           
+        }
+      
+        #restActive{
+            /* display: flex; */
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            /* background-color: #5c5cec; */
+        }
+        .exercise video{
+            width: 25%;
+            height: 50%;
+            margin-right: 1rem;
+        }
+        #tooltip{
+            position: absolute;
+            top: 50%;
+            left:33%;
+            background-color: rgb(30,157,255);
+            padding: .5rem;
+            display: none;
+        }
+        #head{
+            padding: 1rem;
+            height: 40vh;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            text-align: end;
+            margin-bottom: 2rem;
+            box-shadow: 2px 2px 2px 2px  rgb(30,157,255);
+            background-position-x: left;
+            /* background-color:#F2F3F7; */
+            background-position-y: bottom;
+            background-repeat: no-repeat;
+            background-size:contain;
+            background-blend-mode:darken;
+        }
+        #followAlong p, #followAlong h1, #followAlong span{
+            color: black;
+            font-weight: bold;
+        }
+        #followAlong button{
+            background-color: rgb(30,157,255);
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            border-radius: 1rem;
+            border: none;
+            margin-left: .5rem;
+            margin-right: 0.5rem;
+        }
+         #nextExerDiv,#currentVideoDiv{
+           border-radius: 1rem 1rem;
+            background-color: #FFFAFF;
+            height: 50%;
+        }
+        #nextPlaying video{
+           object-fit:contain;
+            }
+       #close-btn{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+       }
+       #readyToGoDiv{
+        text-align: center;
+       }
+       #readyToGo p, #readyToGoDiv h1{
+        color: rgb(30,157,255);
+        font-size: 1.5rem;
+        font-weight: 600;
+       }
+       #workoutplayButtons img{
+            width: 1rem;
+            height: 1rem;
+       }
+       #sendDiv{
+        grid-area: send;
+       }
+       #shareDiv{
+        grid-area: share;
+        padding: 1rem;
+       }
+       
+       #workoutCompleted{
+        height: 90%;
+        display: grid;
+        grid-template-areas: "send"
+        "share";
+        grid-template-rows: 3fr 1fr;
+       }
+        @media only screen and (max-width: 760px){
+            #followAlong{
+                top:7%;
+                left: 7%;
+                width: 86%;
+                height: 86%;
+            }
+         }
+
+    </style>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    
+</head>
+<body>
+    <div class="mainBody">
+        <div id="head">
+            <img  width="24" height="24" src="ic_backlight.png" onclick="goback()" alt="back">
+            <h1 id="Day"></h1>
+           <h3 id="level"></h3>
+           <div>
+            <img  class="iconHeading boltone"  width="24" height="24" src="ic_lightening.png" alt="lightning-bolt--v1"/>
+            <img  class="iconHeading bolttwo" width="24" height="24" src="ic_lightening.png" alt="lightning-bolt--v1"/>
+            <img  class="iconHeading boltthree" width="24" height="24" src="ic_lightening.png" alt="lightning-bolt--v1"/>
+            </div>
+        </div>
+        <div id="info">
+            <div >
+                <h3 id="numofexercises"></h3>
+                <p>Exercies</p>
+            </div>
+            <div >
+                <h3 id="time"></h3>
+                <p>Time</p>
+            </div>
+            <div>
+                <h3  id="calories"></h3>
+                <p>Calories</p>
+            </div>
+        </div>
+        <div id="buttonDiv"><button id="startButton" onclick="startWorkout()">Start</button>
+        <p id="tooltip">You can't do this workout yet...</p></div>
+        <div id="exercises">
+        
+        </div>
+        <div id="followAlong">
+            <div id="readyToGoDiv">
+                <div id="currentVideoDiv">
+                    <video src="Jumping jacks.mp4" id="playingvideo"  width="300" height="200" autoplay loop></video>
+                    </video>    
+                </div>
+               
+                <h1>READY TO GO</h1>
+                <p>COBRAS</p>
+                <h1></h1>
+            
+            </div>
+            <div id="workoutActive">
+                <span class="close-btn"  onclick="closeFollowAlong()">&times;</span>
+                <div id="currentVideoDiv">
+                    <video src="Jumping jacks.mp4" id="playingvideo"  width="300" height="200" autoplay loop></video>
+                    </video>    
+                </div>
+               
+                <h1 id="exerciseCount">00:28</h1>
+                <p>VIDEO</p>
+                <div id="workoutplayButtons">
+                    <button class="backButton"><img src="ic_rewind.png"></button>
+                    <button id="pauseButton"><img id="pausedIcon" src="ic_pause.png"></button>
+                    <button id="nextButton"><img src="ic_forward.png"></button>
+                </div>
+            </div>
+            <div id="restActive">
+                <span>REST</span>
+                <h1 id="restCount">00:19</h1>
+                <div>
+                    <button id="add10secondsButton">+10s</button>
+                    <button id="skipButton">Skip</button>
+                </div>
+                <div id="next">
+                    <p id="nextExercise">Next 15/17<br>COBRAS</p>
+                    <p id="nextDuration">00:30</p>
+                </div>
+                <div id="nextExerDiv">
+                    <video src="Jumping jacks.mp4" id="nextPlaying"  width="300" height="200" autoplay loop></video>
+                </div>
+            </div>
+            <div id="workoutCompleted">
+                <div id="sendDiv">
+                     <div id="imageCompleted">
+                        <h1>Workout<br>Completed
+                        </h1>
+                        <h3 id="infoDone"></h3>
+                    </div>
+                    <div id="statsAfter">
+                        <div >
+                            <h3 id="numDone"></h3>
+                            <p>Exercies</p>
+                        </div>
+                        <div >
+                            <h3 id="timeDone"></h3>
+                            <p>Time</p>
+                        </div>
+                        <div>
+                            <h3  id="caloriesDone"></h3>
+                            <p>Calories</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="shareDiv">
+                    <button id="completed" onclick="completeWorkout()">Completed</button>
+                </div>
+            </div>
+            </div>    
+        </div>
+    </div>
+    <script>
+        let videoExercises=["Clapping crunches.mp4","Jumping jacks.mp4","Heel touches.mp4","Heels to the Heavens.mp4","Mountain climbers.mp4","Plank.mp4","Swimmer and Superman.mp4","Jumping jacks.mp4","Jumping jacks.mp4","Jumping jacks.mp4"];
+        let duration=[30,30,40,20,30,50,40,30,20,20];
+        var parsedObject;
+        let shadow;
+        let closeFollow=false;
+        window.onload=function(){
+            const retrievedData = localStorage.getItem('dayObj');
+            parsedObject = JSON.parse(retrievedData);
+            console.log(parsedObject.daytodo); 
+            console.log(parsedObject.Title); 
+            parsedObject.day=parseInt(parsedObject.day)
+            console.log(parsedObject.day);
+            document.getElementById('Day').innerHTML='Day '+parsedObject.day;
+            document.getElementById('level').innerHTML=parsedObject.Title;
+            if(parsedObject.Title==='Beginner')
+            {
+                document.getElementsByClassName('bolttwo')[0].style.display='none';
+                document.getElementsByClassName('boltthree')[0].style.display='none';
+                document.getElementById('head').style.backgroundImage="url('beginner.png')";
+            }
+            else if(parsedObject.Title==='Intermediate'){
+                document.getElementsByClassName('bolttwo')[0].style.display='inline-block';
+                document.getElementsByClassName('boltthree')[0].style.display='none';
+                document.getElementById('head').style.backgroundImage="url('intermediatepic.png')";
+            }
+            else{
+                document.getElementsByClassName('bolttwo')[0].style.display='inline-block';
+                document.getElementsByClassName('boltthree')[0].style.display='inline-block';
+                document.getElementById('head').style.backgroundImage="url('advancedpic.png')";
+            }
+            function changeLightningImages(imageName) {
+    let lightningImages = document.getElementsByClassName('iconHeading');
+    for (let i = 0; i < lightningImages.length; i++) {
+        lightningImages[i].src = imageName; 
+    }
+}
+            followAlongEventLisneters();
+            document.getElementById('head').style.boxShadow=shadow;
+            let htmlcode;
+            for(let i=0;i<videoExercises.length;i++){
+            htmlcode='<div class="exercise" >'+
+                '<video class="videos" width="300" height="200" >'+
+                '<source src="'+videoExercises[i]+ '" type="video/mp4">'+
+                '</video><div>'+
+                '<h4>'+videoExercises[i].split('.')[0].toUpperCase() +'</h4>'+
+                '<p> 00:'+duration[i] +'</p></div>';
+                document.getElementById('exercises').innerHTML+=htmlcode;
+            }
+            let exerciseDivs= document.getElementsByClassName('exercise');
+            for (let i = 0; i < exerciseDivs.length; i++) {
+                exerciseDivs[i].style.boxShadow = shadow;
+            }
+            document.getElementById('numofexercises').innerHTML=videoExercises.length;
+            document.getElementById('time').innerHTML=15+" min";
+            document.getElementById('calories').innerHTML=videoExercises.length*7.3+" kcal";
+            document.getElementById('numDone').innerHTML=videoExercises.length;
+            document.getElementById('timeDone').innerHTML=15+" min";
+            document.getElementById('caloriesDone').innerHTML=videoExercises.length*7.3+" kcal";
+            document.getElementById('infoDone').innerHTML="Day "+parsedObject.day+" "+parsedObject.Title;
+                     
+    }
+    function goback(){
+    window.location.href = "workoutplan.html";
+}
+    function closeFollowAlong()
+    {
+        $('#followAlong').slideUp();
+        console.log("Shouldve gone up by now")
+          closeFollow=true;
+
+    }
+    $(document).ready(function() {
+            $("#completeButton").click(function() {
+                completeWorkout();
+            });
+        });
+
+        function completeWorkout() {
+            $.post("/workoutCompleted", function(data, status) {
+                if (data.success) {
+                    console.log("Workout completed successfully.");
+                    window.location.href = "workoutplan.html";
+                } else {
+                    console.error("Error completing workout:", data.errorMessage);
+                }
+            });
+        }
+
+function ready()
+{
+    return new Promise((resolve) => {
+  let readyDiv=document.getElementById("readyToGoDiv");
+  console.log("in ready")
+  readyDiv.style.display="block"
+  readyDiv.querySelector('p').innerHTML=videoExercises[0].split('.')[0];
+  readyDiv.querySelector('video').src=videoExercises[0]
+    let countDown=10;
+    let restinterval=setInterval(myTimer, 1000);
+function myTimer() {
+    readyDiv.querySelectorAll('h1')[1].innerHTML=countDown;
+    countDown--;
+    if(countDown===0){
+        clearInterval(restinterval);
+        readyDiv.style.display="none";
+        resolve();
+    }    
+}
+});
+
+}
+let paused=false;
+let skip=false;
+let next=false;
+let back=false;
+function followAlongEventLisneters()
+{
+    document.querySelector("#nextButton").addEventListener('click',()=>{
+        next=true;
+        console.log("next "+next);
+    });
+    let pauseListener=()=>{
+        paused= (paused===true)?false:true;
+        console.log("paused"+paused)
+        if(paused===true)
+        {
+            document.querySelector('#pausedIcon').
+            src="ic_play.png";
+        }else
+             document.querySelector('#pausedIcon').src="ic_pause.png";
+    }
+    let button =document.getElementsByClassName("backButton")[0];
+    console.log(button.innerHTML);
+    button.addEventListener('click',()=>{
+        back=true;
+        console.log("back "+back);
+    });
+    document.querySelector("#pauseButton").addEventListener('click',pauseListener);
+    document.querySelector("#skipButton").addEventListener('click',()=>{
+        skip=true;
+        console.log("skip "+skip);
+    })
+}
+
+function doExercise(exer)
+{
+    return new Promise((resolve,reject) => { 
+    let activeDiv=document.getElementById('workoutActive');
+    console.log(activeDiv.querySelector('p').innerHTML)
+    activeDiv.style.display="flex";
+    activeDiv.querySelector('p').innerHTML=videoExercises[exer].split('.')[0];
+    activeDiv.querySelector('video').src=videoExercises[exer];
+    let countDown=duration[exer];
+    let newString;
+        if(countDown<10)
+         newString="00:0"+countDown;
+        else
+         newString="00:"+countDown;
+    activeDiv.querySelector('h1').innerHTML=newString;
+    function myTimer(){
+        if(paused===false)
+            countDown--; 
+        if(countDown<10)
+         newString="00:0"+countDown;
+        else
+         newString="00:"+countDown;
+        activeDiv.querySelector('h1').innerHTML=newString;
+        console.log("active time "+newString)   
+        if(countDown===0){
+            clearInterval(workoutInterval);
+            activeDiv.display='none';
+            resolve();
+        }
+        if(closeFollow===true){
+            clearInterval(workoutInterval);
+            reject("Leaving async");
+          
+        }
+        if(next===true)
+        {
+            next=false;
+            paused=false;
+            console.log("next after click and pause"+next+" " +paused)
+            if(exer!==videoExercises.length-1){
+                clearInterval(workoutInterval);
+                activeDiv.display='none';
+                resolve()
+            }
+        }
+        if(back===true)
+        {
+            if(exer!==0){
+            clearInterval(workoutInterval);
+            activeDiv.display='none';
+            resolve()
+            }else{
+                back=false;
+            }
+        }
+
+    }
+    let workoutInterval=setInterval(myTimer,1000)
+     });
+
+}
+function rest(exer)
+{
+    return new Promise((resolve) => {
+    let restDiv=document.getElementById('restActive');
+    console.log(exer)
+    let left=parseFloat(exer)+1;
+    let newExer="NEXT "+left+"/"+ videoExercises.length+"<br>"+videoExercises[exer].split('.')[0].toUpperCase();
+    console.log("IN REST "+exer+" "+newExer)
+    restDiv.querySelector('#nextExercise').innerHTML=newExer;
+    restDiv.querySelector('video').src=videoExercises[exer];
+    restDiv.querySelector('#nextDuration').innerHTML=duration[exer];
+    document.querySelector('#workoutActive').style.display="none";
+    restDiv.querySelector('#restCount').innerHTML="00:10";
+    restDiv.style.display="flex"; 
+    let countDown=9;
+    restDiv.querySelector("#add10secondsButton").addEventListener('click',()=>{
+        countDown+=10;
+        console.log("countdown add"+countDown)
+    })  
+     
+    
+    function myTimer(){
+        let newString;
+        if(countDown<10)
+         newString="00:0"+countDown;
+        else
+         newString="00:"+countDown;
+        restDiv.querySelector('#restCount').innerHTML=newString;
+        console.log("rest time "+newString)
+        countDown--; 
+        if(countDown===-1){
+            clearInterval(workoutInterval);
+            restDiv.style.display="none"
+            resolve();
+        }
+        if(skip===true)
+        {
+            skip=false;
+            console.log("skip "+skip)
+            clearInterval(workoutInterval);
+            restDiv.style.display="none"
+            resolve()
+        }
+    
+    }
+    let workoutInterval=setInterval(myTimer,1000)
+});
+
+}
+function startWorkout(){
+    if(parsedObject.day!==parsedObject.daytodo)
+    {
+        $('#tooltip').fadeIn();
+        setTimeout(()=>{
+            $('#tooltip').fadeOut();
+        },2000);
+    }
+    else{
+        $('#followAlong').slideDown();
+        document.querySelector('#workoutActive').style.display="none";
+        document.querySelector('#restActive').style.display="none";
+        document.querySelector('#workoutCompleted').style.display="none";
+        (async () => {
+            try{
+            await ready();
+            console.log("out of ready")
+            await doExercise(0)
+            console.log("out of doExercise(0)")
+            for(let i=1;i<videoExercises.length;i++)
+            {
+                if(back===true)
+                {
+                    back=false;
+                    console.log("back "+back)
+                    if(i>=2){
+                    i=i-2;
+                    console.log("i="+i);
+                    }
+                   
+                }
+                else{
+                 await rest(i);  
+                console.log("out of rest")
+                }
+                await doExercise(i);
+                 console.log("out of doExercise(i)")
+                 if(i===videoExercises.length-1 && back===true)
+                 {
+                    back=false;
+                    console.log("back "+back)
+                    await doExercise(i-1);
+                }
+                     
+            }
+            
+        document.querySelector('#workoutActive').style.display="none";
+      document.querySelector('#workoutCompleted').style.display="block";
+    } catch (error) {
+        console.error('Error:', error);
+        closeFollow=false;
+    }
+    })();
+    }
+}
+</script>
+</body>
+</html>

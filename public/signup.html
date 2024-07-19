@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        a{
+            color:rgba(30,157,255);
+        }
+        body {
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;   
+        }
+        video {
+            position: relative;
+            left: 30px;
+            width: 620px;
+            height: 525px;
+            object-fit: cover;
+            border-radius: 20px;
+            border-top: solid rgb(30,157,255);
+            border-bottom: solid rgba(30,157,255);
+            box-shadow: rgba(30,157,255, 0.4) -5px 0px, rgba(30,157,255, 0.3) -10px 0px, rgba(30,157,255, 0.2) -15px 0px, rgba(30,157,255, 0.1) -20px 0px, rgba(30,157,255, 0.05) -25px 0px;
+        }
+        .container {
+            width: 500px;
+            padding-bottom: 40px;
+            border-radius: 20px;
+            box-shadow: rgba(30,157,255, 0.4) 5px 0px, rgba(30,157,255, 0.3) 10px 0px, rgba(30,157,255, 0.2) 15px 0px, rgba(30,157,255, 0.1) 20px 0px, rgba(30,157,255, 0.05) 25px 0px;
+            background-color: rgb(0, 0, 0);
+            height: 450px;
+            margin-top: 17px;
+            padding-left: 40px;
+            position: relative;
+            z-index: -1;
+            color: white;
+            border-top: solid rgba(30,157,255);
+            border-bottom: solid rgba(30,157,255);
+            transition: transform 2s ease-in-out;
+            transform: translateX(-110%); /* Initial position */
+            
+        }
+        .visible {
+    transform: translateX(0%); /* Slide out to the visible position */
+}
+
+        .form-group {
+            margin-bottom: 1px;
+            width: 85%;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
+            border: solid rgba(30,157,255, 0.755);
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgba(30,157,255);
+        }
+
+        .btn {
+            width: 30%;
+            margin-left: 160px;
+        }
+
+        .lin {
+            margin-left: 130px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .error-message {
+            color: rgb(255, 255, 255);
+        }
+        .login-container {
+            position: relative;
+            display: flex;
+            z-index: 1;
+            margin-top: 5px;
+        }
+        h1 {
+            margin-left: 170px;
+            margin-bottom: 20px;
+        }
+
+            @media screen and (min-width: 375px) and (max-width: 900px){
+            body{
+                display: grid;
+            }
+            .container{
+                transform:none;
+                border: solid rgb(30,157,255);
+            }
+            video{
+                display: none;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <video autoplay muted loop>
+            <source src="pp.webm" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+    <div class="container hidden">
+        <h1>Sign Up</h1>
+        <form id="signupForm" action="/signup" method="post">
+            <div class="form-group">
+                
+                <input type="text" id="username" name="username" placeholder="Username" required minlength="3" maxlength="20" pattern="[a-zA-Z0-9]+" title="Username must contain only letters and numbers (no special characters)">
+                <div id="usernameError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                
+                <input type="email" id="email" name="email" placeholder="Email"  required>
+                <div id="emailError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                
+                <input type="password" id="password" name="password" placeholder="Password" required minlength="6" maxlength="20" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$" title="Password must contain at least one number, one uppercase and one lowercase letter, and at least 6 characters long">
+            </div>
+            <div class="form-group">
+                
+                <input type="password" id="retype_password" name="retype_password" placeholder="Retype Password"  required>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+
+            <div class="btn">
+                <input type="submit" value="Sign Up">
+            </div>
+            <div class="lin">
+                <span>Already have an account? <a href="login.html">Login</a></span>
+            </div>
+        </form>
+    </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const video = document.querySelector("video");
+    video.addEventListener("loadedmetadata", function () {
+        const container = document.querySelector(".container");
+        container.classList.remove("hidden");
+        container.classList.add("visible");
+    });
+});
+
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            
+            event.preventDefault();
+            document.getElementById('passwordError').innerText = "";
+            document.getElementById('usernameError').innerText = "";
+            document.getElementById('emailError').innerText = "";
+
+            
+            const password = document.getElementById('password').value;
+            const retypePassword = document.getElementById('retype_password').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+
+            
+            if (password !== retypePassword) {
+                
+                document.getElementById('passwordError').innerText = "Passwords do not match";
+                return; 
+            }
+
+            
+            fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.errorMessageUsername) {
+                        document.getElementById('usernameError').innerText = data.errorMessageUsername;
+                    } else if (data.errorMessageEmail) {
+                        document.getElementById('emailError').innerText = data.errorMessageEmail;
+                    } else {
+                        
+                        window.location.href = '/login.html';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIET PLAN</title> 
+    <script src="dietPlanScript.js"></script>
+</head>
+<style>
+    body {
+   
+   font-family: Arial, sans-serif; 
+  background-image: url("WhatsApp Image 2024-04-26 at 2.00.15 AM.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+}
+
+
+
+.content {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   
+}
+.tagline{
+   text-align: center;
+   font-size: 30px;
+}
+
+.importance{
+   background-color: rgba(255, 255, 255, 0.6);
+   box-shadow: rgba(30, 157, 255, 0.4) -5px 5px, rgba(30, 157, 255, 0.3) -10px 10px, rgba(30, 157, 255, 0.2) -15px 15px, rgba(30, 157, 255, 0.1) -20px 20px, rgba(30, 157, 255, 0.05) -25px 25px;
+   color: black;
+   width: 50%;
+   border-radius: 5px;
+   padding: 10px;
+   font-weight: 600;
+   padding-left:20px ;
+   padding-right:20px ;
+   padding-top:20px ;
+   padding-bottom:20px ;
+}
+.imp-p{
+   font-size: 20px;
+   line-height:40px;
+   text-align: justify;
+}
+
+.diet-img {
+   max-width:600px ;
+   height: 310px;
+   border-radius: 5px;
+   display: block; 
+   margin: 0 auto;
+   
+}
+
+.main-h {
+   text-align: center;
+   font-size: 35px;
+}
+
+.form-container {
+    background-color:black;
+    
+    padding: 20px;
+   border-radius: 5px;
+   box-shadow: rgba(30, 157, 255, 0.4) 5px 5px, rgba(30, 157, 255, 0.3) 10px 10px, rgba(30, 157, 255, 0.2) 15px 15px, rgba(30, 157, 255, 0.1) 20px 20px, rgba(30, 157, 255, 0.05) 25px 25px;
+   text-align: center;
+   color: #fff;
+   position: relative;
+   animation: slideIn 2.5s ease-in-out forwards, fadeIn 2s ease-in-out forwards;
+   opacity: 0;
+   transform: translateY(100%);
+}
+@keyframes slideIn {
+   from {
+       opacity: 0;
+       transform: translateY(100%);
+   }
+   to {
+       opacity: 1;
+       transform: translateY(0);
+   }
+}
+
+@keyframes fadeIn {
+   from {
+       opacity: 0;
+   }
+   to {
+       opacity: 1;
+   }
+}
+
+.form-container label {
+   display: block;
+   margin-bottom: 30px; 
+   color: whitesmoke;
+   font-size: 20px;
+   font-weight: 600;
+
+}
+
+#age-group,
+#body-type,
+.get-plan-btn {
+   width: 100%; 
+   padding: 15px; 
+   margin-bottom: 60px; 
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+
+.get-plan-btn {
+   background-color:whitesmoke;
+   color: black;
+   transition: background-color 0.3s;
+}
+
+.get-plan-btn:hover {
+   background-color: #ddd;
+}
+
+@media screen and (max-width: 768px) {
+   .content {
+       flex-direction: column; 
+   }
+
+   .importance {
+       width: 80%;
+       margin-bottom: 20px; 
+   }
+}
+</style>
+<body>
+   
+     <h1 class="main-h">Nutrition Plans</h1>
+        <div class="content">
+            <div class="importance">
+                <h2 class="tagline">What We Offer</h2>
+                <p class="imp-p">Nutrition plays a pivotal role in maintaining overall health and well-being. It serves as the foundation for proper growth, development, and functioning of the human body. Our website offers a comprehensive diet plan tailored to individual needs, making it an invaluable resource for optimizing nutrition. With expert guidance and customizable options, our diet plan facilitates healthy eating habits that promote long-term well-being. By following this plan, individuals can harness the power of nutrition to fuel their bodies effectively, supporting their journey toward optimal health and vitality.</p>
+                
+            </div>
+            
+            <div class="form-container" id="formContainer" onsubmit="return redirectToPlan()">
+                <h2>Choose Diet Plan Factors</h2>
+                <form class="animated-form" id="planForm">
+                    <label for="age-group">Select Age Group:</label>
+                    <select id="age-group">
+                        <option value="teenage">Teenage</option>
+                        <option value="adult">Adult</option>
+                        <option value="old">Senior</option>
+                    </select><br>
+                    <label for="body-type">Select Body Type:</label>
+                    <select id="body-type">
+                        <option value="underweight">Underweight</option>
+                        <option value="fit">Fit</option>
+                        <option value="overweight">Overweight</option>
+                    </select><br>
+                    <button type="submit" class="get-plan-btn">Get Plan</button>
+                </form>
+            </div>  
+            
+        </div>
+   
+   
+</body>
+</html>

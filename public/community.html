@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Community</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+  body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: black;
+      padding-top: 20px;
+      color: #fff;
+      z-index: 1000;
+    }
+
+    .sidebar .nav-logo h1 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .sidebar .nav-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar .nav-list ul li {
+      padding: 10px 20px;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .sidebar .nav-list ul li:hover {
+      background-color: rgb(20,157,255);
+    }
+    .sidebar{
+      box-shadow: rgba(20,157,255, 0.4) 5px 5px, rgba(20,157,255, 0.3) 10px 10px, rgba(20,157,255, 0.2) 15px 15px, rgba(20,157,255,0.1) 20px 20px, rgba(20,157,255, 0.05) 25px 25px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .post-text{
+      margin-left: 40px;
+    }
+
+    .post-form button {
+      background-color: rgb(0, 0, 0);
+      color: rgb(20,157,255);
+      border: solid rgb(20, 157, 255);
+      padding: 10px 20px;
+      margin-left: 280px;
+      margin-top: 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .post {
+  background-color: #000000;
+  border-radius: 8px;
+  margin-bottom: 20px;
+ 
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: solid rgba(20,157,255);
+  margin-left: 100px;
+  text-align: center; /* Center align content */
+}
+
+.post img {
+      width: 90%;
+      max-height: 600px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      margin-left: 5px;
+      margin-top: 20px;
+    }
+    .post-content {
+  color: white;
+
+  text-align: center;
+ 
+}
+    
+    .giphy-embed {
+      display: block;
+      margin: auto;
+      position: sticky;
+    }
+
+    #post-form {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    #post-form textarea {
+      width: calc(100% - 20px);
+      padding: 10px 35px 10px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: none;
+      margin-bottom: 10px;
+      font-family: 'Arial', FontAwesome;
+    }
+
+    #post-form .file-upload input[type="file"] {
+      display: none;
+    }
+
+    #post-form .file-upload label {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      padding: 5px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button{
+      background-color: rgb(30,157, 255);
+    }
+    
+
+.close-btn {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+i{
+  color: rgb(20, 157, 255);
+}
+hr {
+  border: 0; /* Remove default border */
+  border-top: 2px solid rgba(20,157,255); /* Set the color of the horizontal rule */
+}
+.content {
+  margin-left: 100px;
+  transition: margin-left 0.3s ease; 
+  border: solid rgba(20,157,255);
+  padding-right: 40px;
+  padding-left: 20px;
+}
+.toggle-btn {
+  display: none;
+}
+.move1{
+  margin-left: 360px;
+}
+.move{
+  text-align: center;
+}
+.animation {
+  position: relative;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.animation img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+
+}
+.profile-pic {
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Adjust size as needed */
+  border-radius: 50%; /* Display as a circle */
+  overflow: hidden; /* Hide any content that overflows the div */
+  position: relative; /* Positioning context for child elements */
+  border: 1px solid white;
+  margin-right: 15px;
+  margin-left: 45px;
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.profile-pic img {
+  width: 100%;
+  height: auto; 
+  object-fit: cover; 
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; 
+}
+.username {
+  color: white; /* Adjust username color as needed */
+    font-weight: bold;
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+a:hover{
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    transform: translateX(0); 
+  }
+.move{
+  padding-left: 22px;
+}
+  .content {
+    margin-left: 0; 
+  }
+  .close-btn {
+    display: block; 
+  }
+  .toggle-btn {
+    display: block; 
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  .sidebar{
+    box-shadow: none;
+  }
+  .post-form button{
+    margin-left: 100px;
+  }
+}
+</style>
+<body>
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <button class="close-btn" id="closeBtn" onclick="toggleSidebar()">&times;</button>
+        <div class="nav-logo">
+            <h1>FITNESS</h1>
+        </div>
+        <hr>
+        <div class="nav-list">
+            <ul>
+              <li><a href="HomePage.html">Home</a></li>
+              <li><a href="workoutplan.html">Workout Plans</a></li>
+              <li><a href="dietPlan.html">Diet Plans</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="profiledisplay.html">Profile</a></li>
+              <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+        <div class="animation">
+          <img src="file.png" alt="Description of the image" width="250" height="188">
+        </div>
+    </div>
+    <div class="content">
+      <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+    <section class="post-form">
+      <h1 class="move">Share Your Fitness Journey</h1>
+      <form id="post-form">
+        <textarea id="post-text" placeholder="Write your post here..."></textarea>
+        <div class="file-upload">
+            <label for="post-image">
+                <i class="far fa-image fa-2x"></i>
+            </label>
+            <input type="file" id="post-image" accept="image/*">
+        </div>
+        <button type="submit">Share</button>
+    </form>
+
+    </section>
+    
+   
+  </div>
+  <h1 class="move1">Recent Posts</h1>
+  <section class="posts" id="postContainer" style="text-align: left;">
+    
+  </section>
+</div>
+<script>
+  
+
+  document.addEventListener('DOMContentLoaded', async () => {
+  
+  // Fetch posts when the page loads
+  await fetchAndRenderPosts();
+});
+
+
+
+async function fetchAndRenderPosts() {
+    try {
+        const response = await fetch('/posts');
+        const postData = await response.json();
+        if (postData.success) {
+            const postContainer = document.getElementById('postContainer');
+            postContainer.innerHTML = ''; // Clear previous posts
+
+            // Iterate over each post
+            for (const post of postData.posts) {
+  // Create a new post element for each post
+  const postElement = document.createElement('div');
+  postElement.classList.add('post');
+
+  if (postData.success) {
+    // Render the post with fetched profile information
+    postElement.innerHTML = `
+      <div class="profile-container">
+        <div class="profile-pic">
+          <img src="${post.profilePic}" alt="Profile Picture">
+        </div>
+        <span class="username">${post.nickname}</span>
+      </div>
+      <div class="post-content">
+        <p>${post.message}</p>
+        <img src="${post.imagePath}" alt="Post Image">
+      </div>
+    `;
+  } else {
+    console.error('Failed to fetch profile for post author:', post.username);
+    continue; // Skip rendering this post if profile fetch fails
+  }
+
+  postContainer.appendChild(postElement); // Append postElement to postContainer
+
+ // Append postElement to postContainer
+}
+        } else {
+            console.error('Failed to fetch posts:', postData.errorMessage);
+        }
+    } catch (error) {
+        console.error('Error fetching and rendering posts:', error);
+    }
+}
+
+
+// Add event listener to the form submission
+document.getElementById('post-form').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Call fetchAndRenderPosts function when the share button is clicked
+  await fetchAndRenderPosts();
+
+  // Get form values
+  var message = document.getElementById('post-text').value.trim(); // Get content from the textarea
+  
+  // Check if an image has been uploaded
+  var imageInput = document.getElementById('post-image');
+
+  // Create FormData object to send data including files
+  var formData = new FormData();
+  formData.append('message', message);
+  if (imageInput.files.length > 0) {
+    formData.append('image', imageInput.files[0]);
+  }
+
+  try {
+    const response = await fetch('/savePost', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+    if (data.success) {
+      // Handle success, maybe show a success message
+      console.log('Post saved successfully');
+    } else {
+      // Handle error, maybe show an error message
+      console.error('Failed to save post');
+    }
+  } catch (error) {
+    console.error('Error saving post:', error);
+  }
+
+  // Clear form fields
+  document.getElementById('post-text').value = ''; // Clear textarea
+  // Clear uploaded image
+  document.getElementById('post-image').value = '';
+});
+
+function toggleSidebar() {
+  var sidebar = document.getElementById('sidebar');
+  var closeBtn = document.getElementById('closeBtn');
+
+  if (sidebar.style.transform === 'translateX(-250px)' || sidebar.style.transform === '') {
+    // Sidebar is hidden or not set, bring it back into view
+    sidebar.style.transform = 'translateX(0)';
+    closeBtn.innerHTML = '&times;'; // Change close button to cross icon
+  } else {
+    // Sidebar is visible, hide it
+    sidebar.style.transform = 'translateX(-250px)';
+    closeBtn.innerHTML = ''; // Remove content from close button
+  }
+}
+
+// Function to always display sidebar when leaving responsive mode
+function displaySidebar() {
+  var sidebar = document.getElementById('sidebar');
+  sidebar.style.transform = 'translateX(0)';
+}
+
+// Add event listener for changes in media query matches
+const mediaQuery = window.matchMedia('(min-width: 769px)');
+mediaQuery.addEventListener('change', (e) => {
+  if (e.matches) {
+    // Normal mode
+    displaySidebar();
+  }
+});
+</script>
+</body>
+</html>

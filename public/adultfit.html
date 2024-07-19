@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit Adult Diet Plan</title>
+</head>
+<style>
+    .all{
+        display: flex;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000000;
+        color: rgb(255, 255, 255);
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgb(0, 0, 0);
+        margin-left: 330px;
+    }
+    hr {
+        border: 0; /* Remove default border */
+        border-top: 2px solid rgb(30, 157, 255); /* Set the color of the horizontal rule */
+    }
+    .folder{
+        background-color: rgb(0, 0, 0);
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left:40px ;
+        padding-right:40px ;
+        border:solid rgb(30, 157, 255);
+    }
+    
+    .main-heading {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .meal {
+        margin-bottom: 40px;
+    }
+    .sidebar {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgb(0, 0, 0);
+      padding-top: 20px;
+      color: #ffffff;
+      z-index: 1000;
+    }
+
+    .sidebar .nav-logo h1 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .sidebar .nav-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar .nav-list ul li {
+      padding: 10px 20px;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .sidebar .nav-list ul li:hover {
+      background-color: rgb(30, 157, 255);
+      color: black;
+    }
+    .sidebar{
+      box-shadow: rgba(30, 157, 255, 0.4) 5px 5px, rgba(30, 157, 255, 0.3) 10px 10px, rgba(30, 157, 255, 0.2) 15px 15px, rgba(30, 157, 255,0.1) 20px 20px, rgba(30, 157, 255, 0.05) 25px 25px;
+    }
+    .meal h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    th, td {
+        border: 1px solid rgb(30, 157, 255);
+        padding: 8px;
+        text-align: left;
+        
+    }
+    th {
+        background-color: #000000;
+    }
+    
+    tr {
+        background-color: #000000;   
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    .animation {
+  position: relative;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.animation img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+
+}
+    </style>
+<body>
+    <div class="all">
+        <div class="sidebar" id="sidebar">
+        <div class="nav-logo">
+            <h1>FITNESS</h1>
+        </div>
+        <hr>
+        <div class="nav-list">
+            <ul>
+                <li><a href="HomePage.html">Home</a></li>
+                <li><a href="workoutplan.html">Workout Plans</a></li>
+                <li><a href="dietPlan.html">Diet Plans</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="profiledisplay.html">Profile</a></li>
+            </ul>
+        </div>
+        <div class="animation">
+            <img src="nut.png" alt="Description of the image" width="250" height="188">
+          </div>
+        </div>
+    <div class="container">
+        <div class="folder">
+            <h1 class="main-heading">Fit Adult Diet Plan</h1>
+            
+            <!-- Breakfast Table -->
+            <div class="meal">
+                <h2>Breakfast</h2>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Food</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Scrambled eggs with spinach and tomatoes, whole grain toast, and a side of Greek yogurt</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Smoothie with banana, berries, spinach, protein powder, and almond milk, served with a small handful of nuts</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Mid-Morning Snack Table -->
+            <div class="meal">
+                <h2>Mid-Morning Snack</h2>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Food</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Whole grain crackers with hummus</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Apple slices with almond butter</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Lunch Table -->
+            <div class="meal">
+                <h2>Lunch</h2>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Food</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Grilled chicken or tofu salad with mixed greens, avocado, quinoa, and a balsamic vinaigrette dressing</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Whole grain wrap with lean turkey, lettuce, tomato, and mustard, served with a side of vegetable sticks and hummus</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Afternoon Snacks Table -->
+            <div class="meal">
+                <h2>Afternoon Snacks</h2>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Food</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Greek yogurt with mixed berries and a sprinkle of granola</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Protein bar with a piece of fruit</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- Evening Snacks Table -->
+            <div class="meal">
+                <h2>Evening Snacks</h2>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Food</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Cottage cheese with pineapple chunks</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sliced bell peppers with guacamole</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Dinner Table -->
+            <div class="meal">
+                <h2>Dinner</h2>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Food</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Grilled salmon with quinoa and steamed asparagus</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Lean beef or tofu stir-fry with broccoli, bell peppers, and brown rice</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

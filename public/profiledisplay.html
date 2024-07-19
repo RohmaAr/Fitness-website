@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-card {
+            position: relative;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 5px solid #1e9dff; /* Border color added */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 600px;
+            max-width: 100%;
+            padding: 20px;
+            animation: fadeIn 5.1s ease;
+            transition: transform 0.3s ease;
+            margin-left: 360px;
+            margin-top: 80px;
+        }
+       
+        #profilePicContainer {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #profilePicContainer img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #1e9dff;
+            animation: bounceIn 1s ease;
+        }
+        .profile-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            display: none; /* Initially hide the table */
+        }
+        .profile-card:hover table {
+            display: table; /* Display the table on hover */
+        }
+        .profile-card th, .profile-card td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-weight: bolder;
+        }
+        .profile-card th {
+            background-color: #1e9dff;
+            color: #fff;
+            font-weight: bolder;
+        }
+        .profile-card button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #1e9dff;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            animation: fadeInUp 1s ease;
+            
+    
+        }
+        .profile-card:hover button {
+            position: relative;
+    z-index: 2; /* Ensure the button is above other elements on hover */
+}
+        .profile-card button:hover {
+            background-color: #0c7bbc;
+            
+        }
+        /* Image overlay */
+        .profile-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('R.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 1; /* Set the opacity to show the overlay by default */
+            transition: opacity 0.3s ease;
+        }
+        .profile-card:hover::after {
+            opacity: 0; /* Hide the overlay on hover */
+        }
+        .nav-bar {
+    background-color: black; 
+    color:whitesmoke; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 20px; 
+    border-bottom: solid white 
+}
+.nav-bar a{
+    color: white;
+    text-decoration: none;
+}
+.nav-logo h1 {
+    margin: 0; 
+    font-size: 24px; 
+}
+
+.nav-list ul {
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+}
+
+.nav-list ul li {
+    margin-right: 20px; 
+    cursor: pointer; 
+}
+
+.nav-buttons {
+    display: flex; 
+    align-items: center; 
+}
+
+.login-btn{
+    background-color: rgb(0, 0, 0); 
+    color:rgb(255, 255, 255); 
+    padding: 8px 16px; 
+    border: solid white; 
+    border-radius: 10px; 
+    margin-right: 10px; 
+    cursor: pointer; 
+}
+.register-btn {
+    background-color: rgb(0, 0, 0); 
+    color:rgb(255, 255, 255); 
+    padding: 8px 10px; 
+    border: solid white; 
+    border-radius: 10px; 
+    margin-right: 10px; 
+    cursor: pointer; 
+}
+.login-btn a,
+.register-btn a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.login-btn:hover,
+.register-btn:hover {
+    background-color: white;
+    color: black; 
+}
+.login-btn a:hover,
+.register-btn a:hover{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes bounceIn {
+            from {
+                transform: scale(0.5);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-logo">
+            <h1>FITNESS</h1>
+        </div>
+        <div class="nav-list">
+            <ul>
+                <li><a href="/workoutplan.html">Workout Plans</a></li>
+                <li><a href="/dietPlan.html">Diet Plans</a></li>
+                <li><a href="/community.html">Community</a></li>
+                <li><a href="/profiledisplay.html">Profile</a></li>
+                <li><a href="/support.html">Support</a></li> 
+            </ul>
+        </div>
+        <div class="nav-buttons">
+            <div class="login-btn"><a href="login.html">Login</a></div>
+            <div class="register-btn"><a href="signup.html">Register</a></div>
+        </div>
+    </div>
+    <div class="profile-card">
+        <div id="profilePicContainer">
+            <img src="https://via.placeholder.com/200" alt="Profile Picture">
+        </div>
+        <table>
+            <tr>
+                <th>Nickname</th>
+                <td id="nickname">NULL</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td id="height">NULL</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td id="weight">NULL</td>
+            </tr>
+            <tr>
+                <th>BMI</th>
+                <td id="bmi">NULL</td>
+            </tr>
+        </table>
+        <button id="profileBtn">Update Profile</button>
+
+    </div>
+    
+    <script>
+        fetch('/getUserProfile')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const profile = data.profile;
+                    document.getElementById('nickname').textContent = profile.nickname;
+                    document.getElementById('height').textContent = `${profile.height.feet} feet ${profile.height.inches} inches`;
+                    document.getElementById('weight').textContent = `${profile.weight} kg`;
+                    document.getElementById('bmi').textContent = profile.bmi.toFixed(2);
+
+                    // Set profile picture
+                    const profilePicUrl = profile.profilePic;
+                    const profilePicElement = document.querySelector('#profilePicContainer img');
+                    profilePicElement.src = profilePicUrl;
+                } else {
+                    console.error('Error fetching user profile:', data.errorMessage);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user profile:', error);
+            });
+
+        function go() {
+            console.log("Button clicked");
+            window.location.href = 'profile.html';
+        }
+
+        document.getElementById('profileBtn').addEventListener('click', go);
+    </script>
+</body>
+</html>

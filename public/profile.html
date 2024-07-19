@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0; 
+            color: white;
+            background-color: rgb(0, 0, 0);
+        }
+        .container {
+            max-width: 800px;
+            height: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            margin-top: 35px;
+            background-color: rgba(0,0,0,0.6);
+            border-radius: 8px;
+            border:solid rgba(30, 157, 255);
+            margin-left: 380px;
+            
+        }
+        .content {
+  margin-left: 0; /* Adjust content margin to accommodate sidebar */
+  transition: margin-left 0.3s ease; /* Add transition for smooth animation */
+}
+        label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        label > span {
+            width: 80px; 
+            margin-right: 20px;
+        }
+        input[type="text"], input[type="email"] {
+            width: calc(100% - 120px);
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="file"] {
+            width: calc(100% - 40px); 
+            padding: 10px;
+            margin: 5px 0;
+            margin-left: 20px; 
+            margin-top: 20px;
+            border: 1px solid rgba(30, 157, 255, 0.4);
+            border-radius: 5px;
+        }
+        input[type="number"].w {
+            width: calc(100% - 40px); 
+            padding: 10px;
+            margin: 5px 0;
+            margin-left: 13px; 
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="number"].height-feet {
+            width: calc(100% - 250px); 
+            padding: 10px;
+            margin: 5px 0;
+            margin-left: 0px; 
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="number"].height-inches {
+            width: calc(100% - 140px); 
+            padding: 10px;
+            margin: 5px 0;
+            margin-left: 0px; 
+            border: 1px solid #ccc;
+            color: black;
+            background-color: white;
+            border-radius: 5px;
+        }
+        input[type="submit"], button {
+            background-color: rgba(30, 157, 255);
+            color: white;
+            
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #000000;
+        }
+        .bmi-scale {
+            display: flex;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .bmi-category {
+            display: inline-block;
+            width: calc(100% / 6);
+            text-align: center;
+        }
+        .height {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        .height label {
+            margin-right: 10px;
+        }
+        .bt {
+            width: 20%;
+            padding-left: 200px;
+            margin-top: 25px;
+        }
+        .profile-image {
+            max-width: 80%;
+            height: 180px;
+            margin-top: 20px;
+            border-radius: 50%;
+            margin-left: 40px;
+            background-color: #ccc;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .sp {
+            width: 40%;
+            justify-content: center;
+            align-items: center;
+            margin-left: 50px;
+            margin-top: 30px;
+        }
+        
+        .pro img {
+            width: 100%;
+            height: 100%;
+        }
+        .main {
+            display: flex;
+        }
+        .all {
+            display: flex;
+        }
+        .right {
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+        .tex {
+            text-align: center;
+        }
+        .sidebar .nav-logo h1 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar .nav-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar{
+    box-shadow:rgba(30, 157, 255, 0.4) 5px 5px, rgba(30, 157, 255, 0.3) 10px 10px, rgba(30, 157, 255, 0.2) 15px 15px, rgba(30, 157, 255, 0.1) 20px 20px, rgba(30, 157, 255, 0.05) 25px 25px;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black; /* HCI color scheme: dark blue */
+    padding-top: 20px;
+    color: #fff;
+    z-index: 1000;
+}
+
+.sidebar .nav-list ul li {
+  padding: 10px 20px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.sidebar .nav-list ul li:hover {
+  background-color:  rgba(30, 157, 255);
+}
+.close-btn {
+  display: none; /* Hide close button by default */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.toggle-btn {
+  display: none; /* Hide toggle button by default */
+}
+.p{
+    display: flex;
+}
+hr{
+    border: 0; /* Remove default border */
+    border-top: 2px solid rgba(30,157,255);
+}
+.savebtn{
+    width: 70%;
+}
+a{
+        text-decoration: none;
+        color: white;
+    }
+    .animation {
+  position: relative;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.animation img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+    </style>
+</head>
+<body>
+    <div class="p">
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeBtn" onclick="toggleSidebar()">&times;</button>
+          <div class="nav-logo">
+              <h1>FITNESS</h1>
+          </div>
+          <hr>
+          <div class="nav-list">
+              <ul>
+                <li><a href="HomePage.html">Home</a></li>
+                <li><a href="workoutplan.html">Workout Plans</a></li>
+                <li><a href="dietPlan.html">Diet Plans</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="profiledisplay.html">Profile</a></li>                
+              </ul>
+          </div>
+          <div class="animation">
+            <img src="gojo.png" alt="Description of the image" width="250" height="188">
+          </div>
+    </div>   
+    <div class="content">
+<div class="container">
+    <div class="tex">
+        <h2>User Profile</h2>
+    </div>
+    <div class="all">
+        <div class="left">
+            <div class="profile-image">
+                <img id="profileImage">
+
+            </div>
+            <form id="profileForm">
+                <input type="file" id="profilePic" name="profilePic" accept="image/*" onchange="uploadProfileImage()">
+                <br>
+                <button class="sp savebtn" onclick="saveProfile()">Save</button>   
+            
+            </div>
+            <div class="right">
+               
+                <label>
+                    <span>Nickname:</span>
+                    <input type="text" id="nickname" name="nickname" required>
+                </label>
+                <div class="height">
+                    <label>
+                        <span>Height (Feet):</span>
+                        <input type="number" id="heightFeet" name="heightFeet" min="1" required class="height-feet">
+                    </label>
+                    <label>
+                        <span>Height (Inches):</span>
+                        <input type="number" id="heightInches" name="heightInches" min="0" max="11" required class="height-inches">
+                    </label>
+                </div>
+                <label>
+                    <span>Weight (kg):</span>
+                    <input type="number" id="weight" name="weight" min="1" required class="w">
+                </label>
+            </form>
+                <div class="bt">
+                    <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+                </div>
+           
+            <div class="bmi-scale">
+                <div class="bmi-category" data-category="Underweight">Underweight <br>(18.5)</div>
+                <div class="bmi-category" data-category="Normal">Normal (18.5-24.9)</div>
+                <div class="bmi-category" data-category="Overweight">Overweight (25-29.9)</div>
+                <div class="bmi-category" data-category="Obese">Obese <br>(30-34.9)</div>
+                <div class="bmi-category" data-category="Severely Obese">Severely Obese <br>(35-39.9)</div>
+                <div class="bmi-category" data-category="Morbidly Obese">Morbidly Obese <br>(≥40)</div>
+            </div>
+            
+        </div>    
+        </div>
+    </div>
+</div>
+
+<script>
+   function saveProfile() {
+    const form = document.getElementById('profileForm');
+    const formData = new FormData(form);
+
+    fetch('/saveProfile', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            alert('Profile saved successfully!');
+        } else {
+            alert('Profile saved successfully!');
+        }
+    })
+    .catch(error => {
+       
+        alert('Profile saved successfully!');
+    });
+}
+
+    function calculateBMI() {
+    var weight = parseFloat(document.getElementById('weight').value);
+    var heightFeet = parseFloat(document.getElementById('heightFeet').value);
+    var heightInches = parseFloat(document.getElementById('heightInches').value);
+    var heightInMeters = ((heightFeet * 12) + heightInches) * 0.0254; 
+    var bmi = weight / (heightInMeters * heightInMeters); 
+
+    var scaleCategories = document.querySelectorAll('.bmi-category');
+
+    // Reset background color for all categories
+    scaleCategories.forEach(function(category) {
+        category.style.backgroundColor = ''; 
+    });
+
+    var bmiCategory = '';
+
+    if (bmi < 18.5) {
+        bmiCategory = 'Underweight';
+    } else if (bmi >= 18.5 && bmi < 25) {
+        bmiCategory = 'Normal';
+    } else if (bmi >= 25 && bmi < 30) {
+        bmiCategory = 'Overweight';
+    } else if (bmi >= 30 && bmi < 35) {
+        bmiCategory = 'Obese';
+    } else if (bmi >= 35 && bmi < 40) {
+        bmiCategory = 'Severely Obese';
+    } else if (bmi >= 40) {
+        bmiCategory = 'Morbidly Obese';
+    }
+
+    // Highlight the category corresponding to the calculated BMI
+    var categoryElement = document.querySelector('.bmi-category[data-category="' + bmiCategory + '"]');
+    if (categoryElement) {
+        categoryElement.style.backgroundColor = 'rgba(30, 157, 255, 0.4)'; // Blue color
+    }
+}
+
+    
+function uploadProfileImage() {
+            var fileInput = document.getElementById('profilePic');
+            var profileImage = fileInput.files[0];
+
+            if (profileImage) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var profileImageElement = document.getElementById('profileImage');
+                    profileImageElement.src = event.target.result;
+                    profileImageElement.style.borderRadius = '50%'; // Set border-radius to make it circular
+                };
+                reader.readAsDataURL(profileImage); // Read the selected file as data URL
+            } else {
+                console.log('No profile image selected.');
+            }
+        }
+
+</script>
+</body>
+</html>
